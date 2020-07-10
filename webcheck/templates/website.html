@@ -1,0 +1,85 @@
+{% extends "instansi.html" %}
+{% block content %}
+<div class="main_content">
+  <table class="table">
+    <thead class="thead-light">
+      <tr>
+        <th scope="col">Website</th>
+        <th scope="col">Status</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for dw in ndw %}
+        <tr>
+        {% if dw.status == true %}
+              <td>
+                {{dw.url}}
+              </td>
+              <td>
+                <span class="badge badge-success">Active</span>
+              </td>
+              {% if current_user.is_authenticated %}
+                <td>
+                  <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deletewebsiteModal{{dw.id}}">Hapus</button>
+                </td>
+              {% endif %}  
+        {% else %}
+              <td>
+                {{dw.url}}
+              </td>
+              <td>
+                <span class="badge badge-warning">Down</span>
+              </td>
+              {% if current_user.is_authenticated %}
+                <td>
+                  <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deletewebsiteModal{{dw.id}}">Hapus</button>
+                </td>
+              {% endif %}
+        {% endif %}
+        </tr>
+  <!-- Modal -->
+
+        <div class="modal fade" id="deletewebsiteModal{{dw.id}}" tabindex="-1" role="dialog" aria-labelledby="deletewebsiteModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Hapus URL</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <p>Hapus {{dw.url}} ?</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                <form action="{{ url_for('deletewebsite', id_web=dw.id) }}" method="POST">
+                  <input class="btn btn-danger" type="submit" value="Hapus">
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+
+  <!-- Modal --> 
+      {% endfor %}
+      {% if current_user.is_authenticated %}
+        <tr>
+          <form method="POST" action="">
+            {{ form.hidden_tag() }}
+            <fieldset class="form-group">
+              <th scope="row" class="form-group">
+                {{ firm.url(class="form-control", placeholder="Post new website here!") }}
+              </th>
+            </fieldset>
+          <td>
+            {{ firm.submit (class="btn btn-primary", type="submit", value="Post") }} 
+          </td>
+          </form>
+        </tr>
+      {% endif %}
+    </tbody>
+  </table>
+</div>
+{% endblock content %}

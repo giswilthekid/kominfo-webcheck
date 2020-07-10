@@ -1,0 +1,48 @@
+{% extends "layout.html" %}
+{% block body %}
+	<div class="tab-content">
+        <div class="tab-pane tabs-animation fade show active" id="tab-content-0" role="tabpanel">
+            <div class="row">
+                <div class="col-md-6">
+                	<div class="card mb-3 widget-content">
+	                    <div class="widget-content-outer">
+	                        <div class="widget-content-wrapper">
+	                            <div class="widget-content-left">
+	                                <div class="widget-heading">Total Instansi</div>
+	                            </div>
+	                            <div class="widget-content-right">
+	                                <div class="widget-numbers text-success">{{jumlah_instansi}}</div>
+	                            </div>
+	                        </div>
+	                    </div>
+	                </div>
+                    <div class="main-card mb-3 card">
+                        <div class="card-body">
+                            <h5 class="card-title">Data Website</h5>
+                            <canvas id="piechart"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                	<div class="card mb-3 widget-content">
+	                    <div class="widget-content-outer">
+	                        <div class="widget-content-wrapper">
+	                            <div class="widget-content-left">
+	                                <div class="widget-heading">Total Website</div>
+	                            </div>
+	                            <div class="widget-content-right">
+	                                <div class="widget-numbers text-success">{{jumlah_website}}</div>
+	                            </div>
+	                        </div>
+	                    </div>
+	                </div>
+                    <div class="main-card mb-3 card">
+                        <div class="card-body">
+                            <h5 class="card-title">Data Website</h5>
+                            <canvas id="doughnutchart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+{% endblock %}

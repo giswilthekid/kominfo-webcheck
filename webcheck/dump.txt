@@ -1,0 +1,106 @@
+# def post_web():
+# 	form = PostUrl()
+# 	if form.validate_on_submit():
+# 		web = Web(url=form.url.data, id_instansi=id_inst)
+# 		db.session.add(web)
+# 		db.session.commit()
+# 		flash(f'New website has been created!','success')
+# 	return render_template('instansi.html', form=form)
+
+# def delete_web(webs):
+# 	web = Web.query.get_or_404(webs)
+# 	db.session.delete(web)
+# 	db.session.commit()
+# 	flash('URL has been deleted!', 'success')
+# 	return redirect(url_for('home'))
+
+
+<!--               <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="deleteModalLabel">Delete URL?</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <form action="{{ url_for('delete_web', webs=dw.id) }}" method="POST">
+                          <input class="btn btn-danger" type="submit" value="Delete">
+                        </form>
+                    </div>
+                  </div>
+                </div>
+              </div> -->
+
+
+<!--       <tr>
+        <form method="POST" action="">
+          {{ form.hidden_tag() }}
+          <fieldset class="form-group">
+            <th scope="row" class="form-group">
+              {{ form.url(class="form-control", placeholder="Post new website here!") }}
+            </th>
+          </fieldset>
+          <td>
+            {{ form.submit (class="btn btn-primary", type="submit", value="Post") }} 
+          </td>
+        </form>
+      </tr> -->
+
+
+var ctx = document.getElementById('piechart');
+var ctx2 = document.getElementById('doughnutchart');
+
+var piechart = new Chart((ctx, {
+    type: 'pie',
+    data: {
+        labels: ['Down', 'Active'],
+        datasets: [{
+            label: '# of Votes',
+            data: [{% for item in data %}
+            <span onclick=someFunction({{ item|safe }});</span>
+            {% endfor %}],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+            ],
+            borderWidth: 1
+        }]
+    },
+});
+
+
+var doughnutchart = new Chart(ctx2, {
+    type: 'doughnut',
+    data: {
+        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        datasets: [{
+            label: '# of Votes',
+            data: [12, 19, 3, 5, 2, 3],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+});
+
